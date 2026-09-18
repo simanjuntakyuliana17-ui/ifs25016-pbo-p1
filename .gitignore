@@ -1,0 +1,31 @@
+# Hasil kompilasi Java
+*.class
+*.jar
+**/latihan1/
+**/latihan2/
+**/latihan3/
+**/latihan4/
+**/latihan5/
+
+# Folder output IDE / build
+out/
+bin/
+build/
+target/
+.gradle/
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# File sistem
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Log dan file sementara
+*.log
+*.tmp
+*~
