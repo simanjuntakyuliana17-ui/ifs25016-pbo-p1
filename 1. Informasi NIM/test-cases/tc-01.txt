@@ -1,0 +1,5 @@
+INPUT:
+NIM1234
+
+EXPECTED OUTPUT:
+NIM harus 8 karakter
