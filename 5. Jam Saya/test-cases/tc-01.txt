@@ -1,0 +1,5 @@
+INPUT:
+24:00
+
+EXPECTED OUTPUT:
+Jam tidak valid
