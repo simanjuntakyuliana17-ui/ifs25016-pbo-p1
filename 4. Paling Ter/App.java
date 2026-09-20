@@ -11,7 +11,7 @@ public class App {
             List<Integer> nilai = bacaInput(sc);
 
             if (nilai.isEmpty()) {
-                System.out.println("Tidak ada data yang valid untuk diproses.");
+                // Sesuai spesifikasi: jika tidak ada data valid, tidak ada output sama sekali.
                 return;
             }
 
@@ -20,8 +20,10 @@ public class App {
         }
     }
 
-    // Tanggung jawab: membaca & memvalidasi input dari user
-    static List<Integer> bacaInput(Scanner sc) {
+    // Tanggung jawab: membaca & memvalidasi input dari user.
+    // Input yang tidak bisa diparse sebagai angka diabaikan secara diam
+    // (tanpa pesan tambahan) agar output tetap sesuai spesifikasi.
+    private static List<Integer> bacaInput(Scanner sc) {
         List<Integer> nilai = new ArrayList<>();
 
         while (sc.hasNextLine()) {
@@ -32,14 +34,14 @@ public class App {
             try {
                 nilai.add(Integer.parseInt(line));
             } catch (NumberFormatException e) {
-                System.out.println("Input '" + line + "' bukan angka yang valid, diabaikan.");
+                // Input tidak valid, diabaikan tanpa mencetak apa pun.
             }
         }
         return nilai;
     }
 
     // Tanggung jawab: menghitung frekuensi kemunculan tiap nilai
-    static Map<Integer, Integer> hitungFrekuensi(List<Integer> nilai) {
+    private static Map<Integer, Integer> hitungFrekuensi(List<Integer> nilai) {
         Map<Integer, Integer> frekuensi = new LinkedHashMap<>();
         for (int v : nilai) {
             frekuensi.merge(v, 1, Integer::sum);
@@ -48,7 +50,7 @@ public class App {
     }
 
     // Tanggung jawab: mencari nilai tertinggi & terendah
-    static int[] cariMinMax(List<Integer> nilai) {
+    private static int[] cariMinMax(List<Integer> nilai) {
         int tertinggi = nilai.get(0);
         int terendah = nilai.get(0);
         for (int v : nilai) {
@@ -59,8 +61,8 @@ public class App {
     }
 
     // Tanggung jawab: mencari nilai dengan frekuensi terbanyak & tersedikit,
-    // serta hasil kali (nilai x frekuensi) tertinggi & terendah
-    static void cetakHasil(List<Integer> nilai, Map<Integer, Integer> frekuensi) {
+    // serta hasil kali (nilai x frekuensi) tertinggi & terendah, lalu mencetak hasil
+    private static void cetakHasil(List<Integer> nilai, Map<Integer, Integer> frekuensi) {
         int[] minMax = cariMinMax(nilai);
         int tertinggi = minMax[0];
         int terendah = minMax[1];

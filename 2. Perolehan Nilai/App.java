@@ -127,13 +127,19 @@ public class App {
             // tidak terpotong/dibulatkan ke bawah secara tidak akurat.
             // Contoh: sp=1, sb=3 -> integer division (1*100)/3 = 33 (hilang presisi)
             //         sedangkan double division (1*100.0)/3 = 33.33...
-            double persentase = sb == 0 ? 0.0 : (sp * 100.0) / sb;
-            double kontribusi = (persentase / 100.0) * bAkhir;
+            // Hitung persentase dengan double supaya akurat (tidak terpotong),
+            // karena nilai ini dipakai untuk menghitung kontribusi & nilai akhir.
+            double persentaseAkurat = sb == 0 ? 0.0 : (sp * 100.0) / sb;
+            double kontribusi = (persentaseAkurat / 100.0) * bAkhir;
             kontribusi = Math.round(kontribusi * 100) / 100.0;
             nilaiAkhir += kontribusi;
 
-            System.out.printf(Locale.US, ">> %s: %.2f/100 (%.2f/%d)%n",
-                    namaKomponen.get(s), persentase, kontribusi, bAkhir);
+            // Tampilan persentase tetap format integer sesuai spesifikasi output (mis. "0/100"),
+            // tapi perhitungan di atas tetap memakai nilai double yang akurat.
+            int persentaseTampil = (int) persentaseAkurat;
+
+            System.out.printf(Locale.US, ">> %s: %d/100 (%.2f/%d)%n",
+                    namaKomponen.get(s), persentaseTampil, kontribusi, bAkhir);
         }
 
         return nilaiAkhir;
