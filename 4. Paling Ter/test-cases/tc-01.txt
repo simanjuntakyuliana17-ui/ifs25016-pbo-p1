@@ -1,0 +1,11 @@
+INPUT:
+0
+---
+
+EXPECTED OUTPUT:
+Tertinggi: 0
+Terendah: 0
+Terbanyak: 0 (1x)
+Tersedikit: 0 (1x)
+Jumlah Tertinggi: 0 * 1 = 0
+Jumlah Terendah: 0 * 1 = 0
