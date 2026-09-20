@@ -1,0 +1,10 @@
+INPUT:
+1
+42
+
+EXPECTED OUTPUT:
+Nilai L: Tidak Ada
+Nilai Kebalikan L: Tidak Ada
+Nilai Tengah: 42
+Perbedaan: Tidak Ada
+Dominan: 42
