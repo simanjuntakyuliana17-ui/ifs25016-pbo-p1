@@ -123,23 +123,18 @@ public class App {
             int sb = sumBobotRecord.get(s);
             int sp = sumPerolehanRecord.get(s);
 
-            // FIX: gunakan pembagian double, bukan integer, supaya persentase
-            // tidak terpotong/dibulatkan ke bawah secara tidak akurat.
-            // Contoh: sp=1, sb=3 -> integer division (1*100)/3 = 33 (hilang presisi)
-            //         sedangkan double division (1*100.0)/3 = 33.33...
-            // Hitung persentase dengan double supaya akurat (tidak terpotong),
-            // karena nilai ini dipakai untuk menghitung kontribusi & nilai akhir.
-            double persentaseAkurat = sb == 0 ? 0.0 : (sp * 100.0) / sb;
-            double kontribusi = (persentaseAkurat / 100.0) * bAkhir;
+            // Persentase dihitung dengan pembagian integer (dipotong ke bawah) SESUAI SPESIFIKASI:
+            // kontribusi dihitung dari persentase yang sudah dipotong ini, bukan dari nilai akurat.
+            // Contoh (terverifikasi dari test case resmi): sp=20, sb=30
+            //   -> persentase = (20*100)/30 = 66 (dipotong, bukan 66.66...)
+            //   -> kontribusi = 66/100.0 * 30 = 19.80 (BUKAN 20.00 dari nilai akurat)
+            int persentase = sb == 0 ? 0 : (sp * 100) / sb;
+            double kontribusi = (persentase / 100.0) * bAkhir;
             kontribusi = Math.round(kontribusi * 100) / 100.0;
             nilaiAkhir += kontribusi;
 
-            // Tampilan persentase tetap format integer sesuai spesifikasi output (mis. "0/100"),
-            // tapi perhitungan di atas tetap memakai nilai double yang akurat.
-            int persentaseTampil = (int) persentaseAkurat;
-
             System.out.printf(Locale.US, ">> %s: %d/100 (%.2f/%d)%n",
-                    namaKomponen.get(s), persentaseTampil, kontribusi, bAkhir);
+                    namaKomponen.get(s), persentase, kontribusi, bAkhir);
         }
 
         return nilaiAkhir;
