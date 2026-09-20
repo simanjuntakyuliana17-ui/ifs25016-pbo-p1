@@ -1,0 +1,20 @@
+INPUT:
+20
+20
+15
+15
+15
+15
+---
+
+EXPECTED OUTPUT:
+Perolehan Nilai:
+>> Partisipatif: 0/100 (0.00/20)
+>> Tugas: 0/100 (0.00/20)
+>> Kuis: 0/100 (0.00/15)
+>> Proyek: 0/100 (0.00/15)
+>> UTS: 0/100 (0.00/15)
+>> UAS: 0/100 (0.00/15)
+
+>> Nilai Akhir: 0.00
+>> Grade: E
